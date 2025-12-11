@@ -11,9 +11,55 @@ public class CutsceneController : MonoBehaviour
 
     public event Action OnCutSceneCompleteAction;
 
+    public bool isInteractable = false;
+    bool isCutscenePlaying = false;
+    int currentCutsceneIndex = 0;
+    Cutscene[] cutscenes;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isInteractable && isCutscenePlaying)
+            {
+                currentCutsceneIndex++;
+                if (currentCutsceneIndex < cutscenes.Length)
+                {
+                    cutsceneTextReference.text = cutscenes[currentCutsceneIndex].cutsceneText;
+                    cutsceneImageReference.sprite = cutscenes[currentCutsceneIndex].cutsceneImage;
+                }
+                else
+                {
+                    OnCutSceneComplete();
+                }
+            }
+        }
+    }
+
     public void CallCutscene(Cutscene[] cutscenes)
     {
-        StartCoroutine(ShowCutscene(cutscenes));
+        if (isInteractable && !isCutscenePlaying)
+        {
+            this.cutscenes = cutscenes;
+            if(!cutsceneTextReference.enabled)
+            {
+                cutsceneTextReference.enabled = true;
+            }
+            if(!cutsceneImageReference.enabled)
+            {
+                cutsceneImageReference.enabled = true;
+            }
+            cutsceneTextReference.text = cutscenes[0].cutsceneText;
+            cutsceneImageReference.sprite = cutscenes[0].cutsceneImage;
+            isCutscenePlaying = true;
+        }
+        else
+        {
+            this.cutscenes = cutscenes;
+            isCutscenePlaying = true;
+            StartCoroutine(ShowCutscene(cutscenes));
+        }
+        
     }
 
     IEnumerator ShowCutscene(Cutscene[] cutscenes)
@@ -31,6 +77,8 @@ public class CutsceneController : MonoBehaviour
     {
         cutsceneTextReference.enabled = false;
         cutsceneImageReference.enabled = false;
+        isCutscenePlaying = false;
+        currentCutsceneIndex = 0;
         OnCutSceneCompleteAction?.Invoke();
     }
 }

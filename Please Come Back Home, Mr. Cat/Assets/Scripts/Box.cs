@@ -7,69 +7,33 @@ public class Box : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDr
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
-    bool isDragging = false;
+    [SerializeField] bool isDragging = false;
     Vector2 lastPosition;
-
-    public AudioClip[] boxSounds;
     public int boxID; //0 = rocks 1 = bells 2 = leaves 3 = misc
-    int secondaryID;
 
     public AudioSource mainSound;
-    public AudioSource secondarySound;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        lastPosition = rectTransform.anchoredPosition;
-        secondaryID = Random.Range(0, 3);
-        mainSound.clip = boxSounds[boxID];
-        secondarySound.clip = boxSounds[secondaryID];
+        lastPosition = rectTransform.anchoredPosition; 
         mainSound.volume = 0;
-        secondarySound.volume = 0;
         mainSound.Play();
-        secondarySound.Play();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float distance = (lastPosition - rectTransform.anchoredPosition).magnitude;
         if (isDragging)
         {
-            if (distance > 0.001f && !isDragging)
-            {
-                if(mainSound.volume <= 0)
-                {
-                    mainSound.volume = 0.5f;
-                }
-                if(secondarySound.volume <= 0)
-                {
-                    secondarySound.volume = 0.1f;
-                }
-            }
-            else
-            {
-                if(mainSound.volume > 0)
-                {
-                    mainSound.volume = 0;
-                }
-                if(secondarySound.volume > 0)
-                {
-                    secondarySound.volume = 0;
-                }
-            }
+            mainSound.volume = 0.5f;
         }
         else
         {
-            if(mainSound.volume > 0)
-            {
-                mainSound.volume = 0;
-            }
-            if(secondarySound.volume > 0)
-            {
-                secondarySound.volume = 0;
-            }
+            mainSound.volume = 0;
         }
+
         
         lastPosition = rectTransform.anchoredPosition;
     }
