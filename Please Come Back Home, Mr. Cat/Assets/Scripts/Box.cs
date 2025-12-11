@@ -3,13 +3,13 @@ using UnityEngine.EventSystems;
 
 public class Box : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-    [SerializeField] private Canvas canvas;
+    public Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
     [SerializeField] bool isDragging = false;
     Vector2 lastPosition;
-    public int boxID; //0 = rocks 1 = bells 2 = leaves 3 = misc
+    public int boxID;
 
     public AudioSource mainSound;
 
