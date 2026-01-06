@@ -94,8 +94,27 @@ public class PlayerMovement : MonoBehaviour
 
     void OnWalkingPerformed(InputAction.CallbackContext context)
     {
-        horizontalMovement = context.ReadValue<Vector2>().x;
-        verticalMovement = context.ReadValue<Vector2>().y;
+        
+        //prevent the player from moving backwards
+        var adjustedVerticalMovement = context.ReadValue<Vector2>().y;
+        //prevents the player from moving backwards by pressing W and S
+        if(Mathf.Abs(orientation.rotation.y) > 0.55f)
+        {
+            if(adjustedVerticalMovement > 0)
+            {
+                adjustedVerticalMovement = 0;
+            }
+        }
+        else if(Mathf.Abs(orientation.rotation.y) < 0.55f)
+        {
+            if(adjustedVerticalMovement < 0)
+            {
+                adjustedVerticalMovement = 0;
+            }
+        }
+        verticalMovement = adjustedVerticalMovement;
+
+
     }
 
     void OnWalkingCanceled(InputAction.CallbackContext context)
@@ -114,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        // print((orientation.rotation.y));
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1, 0), groundDistance, groundMask);
         ControlDrag();
         CheckForHeadbobTrigger();

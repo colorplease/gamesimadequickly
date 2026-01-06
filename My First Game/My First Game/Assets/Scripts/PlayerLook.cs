@@ -38,10 +38,6 @@ public class PlayerLook : MonoBehaviour
         if (!inControl) return;
         mouseX = context.ReadValue<Vector2>().x;
         mouseY = context.ReadValue<Vector2>().y;
-
-       
-
-        
     }
 
     void OnLookingCanceled(InputAction.CallbackContext context)
