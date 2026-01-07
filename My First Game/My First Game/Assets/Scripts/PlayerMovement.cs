@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float Smooth;
     [SerializeField] float Amount;
     Vector3 startPos;
+    float adjustedVerticalMovement;
     public bool commandeerInput;
 
     [Header("Footsteps")]
@@ -94,33 +95,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnWalkingPerformed(InputAction.CallbackContext context)
     {
-        
-        //prevent the player from moving backwards
-        var adjustedVerticalMovement = context.ReadValue<Vector2>().y;
-        //prevents the player from moving backwards by pressing W and S
-        if(Mathf.Abs(orientation.rotation.y) > 0.55f)
-        {
-            if(adjustedVerticalMovement > 0)
-            {
-                adjustedVerticalMovement = 0;
-            }
-        }
-        else if(Mathf.Abs(orientation.rotation.y) < 0.55f)
-        {
-            if(adjustedVerticalMovement < 0)
-            {
-                adjustedVerticalMovement = 0;
-            }
-        }
-        verticalMovement = adjustedVerticalMovement;
-
-
+        adjustedVerticalMovement = context.ReadValue<Vector2>().y;
     }
 
     void OnWalkingCanceled(InputAction.CallbackContext context)
     {
-        horizontalMovement = 0;
-        verticalMovement = 0;
+        adjustedVerticalMovement = 0;
         moveDirection = Vector3.zero;
     }
 
@@ -140,6 +120,23 @@ public class PlayerMovement : MonoBehaviour
         StopHeadbob();
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+
+         //prevents the player from moving backwards by pressing W and S
+        if(Mathf.Abs(orientation.rotation.y) > 0.45f)
+        {
+            if(adjustedVerticalMovement > 0)
+            {
+                adjustedVerticalMovement = 0;
+            }
+        }
+        else if(Mathf.Abs(orientation.rotation.y) < 0.45f)
+        {
+            if(adjustedVerticalMovement < 0)
+            {
+                adjustedVerticalMovement = 0;
+            }
+        }
+        verticalMovement = adjustedVerticalMovement;
     }
 
     void Jump()
@@ -173,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         else if (!isGrounded)
         {
             rb.AddForce(moveDirection * moveSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
-        } 
+        }
     }
 
     void CheckForHeadbobTrigger()
