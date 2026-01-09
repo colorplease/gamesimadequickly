@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 startPos;
     float adjustedVerticalMovement;
     public bool commandeerInput;
+    Vector3 forwardDirection;
 
     [Header("Footsteps")]
     //check ground type to play different sound for footsteps
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Application.targetFrameRate = 240;
+        forwardDirection = orientation.forward;
     }
 
     void Awake()
@@ -158,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
+        moveDirection = verticalMovement * forwardDirection;
         if (isGrounded && !OnSlope())
         {
             rb.AddForce(moveDirection * moveSpeed * movementMultiplier, ForceMode.Acceleration);

@@ -52,7 +52,7 @@ public class PlayerLook : MonoBehaviour
         yRotation += mouseX * sensX * multiplier;
         xRotation -= mouseY * sensY * multiplier;
 
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        xRotation = Mathf.Clamp(xRotation, -85, 85);
 
         cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
