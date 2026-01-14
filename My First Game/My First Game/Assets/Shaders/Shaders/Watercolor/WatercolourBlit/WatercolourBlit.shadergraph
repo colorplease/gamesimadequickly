@@ -1646,7 +1646,7 @@
     "m_Title": "Edge Detection",
     "m_Position": {
         "x": -1243.0,
-        "y": 360.99993896484377
+        "y": 361.0
     }
 }
 
@@ -1939,7 +1939,7 @@
     "m_Title": "Distortion",
     "m_Position": {
         "x": -1500.0,
-        "y": -183.00003051757813
+        "y": -183.0
     }
 }
 
@@ -5086,8 +5086,8 @@
     "m_ObjectId": "ca8d6e2049cb49b6bdc32ccbbda79683",
     "m_Title": "White Vignette (Paper edge)",
     "m_Position": {
-        "x": -790.0,
-        "y": -567.0000610351563
+        "x": -789.9999389648438,
+        "y": -567.0
     }
 }
 
