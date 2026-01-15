@@ -8,14 +8,25 @@ public class ThoughtManager : MonoBehaviour
 
     [Header("Thought TextMeshProUGUI")]
     [SerializeField] TextMeshProUGUI thoughtPastText;
+    [SerializeField] TextMeshProUGUI thoughtFutureText;
+    [SerializeField] TextMeshProUGUI thoughtFutureBG;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerExit(Collider other)
     {
-        Material mat = thoughtPastText.material;
-        mat.EnableKeyword("OUTLINE_ON");
-        mat.SetFloat("_OutlineWidth", 11f);
-        mat.SetColor("_OutlineColor", Color.black);
-        thoughtPastText.UpdateMeshPadding();
+        switch (other.gameObject.tag)
+        {
+            case "Sweeper IN FRONT":
+                thoughtFutureText.SetText(other.gameObject.GetComponent<Thought>().futureThought);
+                thoughtFutureBG.SetText(other.gameObject.GetComponent<Thought>().futureThought);
+                break;
+            case "Sweeper ON THE OBJECT":
+                thoughtFutureText.SetText("");
+                thoughtPastText.SetText("");
+                thoughtFutureBG.SetText("");
+                break;
+            case "Sweeper BEHIND":
+                thoughtPastText.SetText(other.gameObject.GetComponent<Thought>().pastThought);
+                break;
+        }
     }
 }

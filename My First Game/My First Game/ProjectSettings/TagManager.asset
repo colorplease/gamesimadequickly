@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Sweeper IN FRONT
+  - Sweeper ON THE OBJECT
+  - Sweeper BEHIND
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Past
   - 'Present '
   - Future
-  - 
+  - Barrier
   - 
   - 
   - 
