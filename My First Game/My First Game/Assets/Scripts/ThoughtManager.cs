@@ -7,25 +7,32 @@ public class ThoughtManager : MonoBehaviour
     //manages the UI of thoughts
 
     [Header("Thought TextMeshProUGUI")]
-    [SerializeField] TextMeshProUGUI thoughtPastText;
-    [SerializeField] TextMeshProUGUI thoughtFutureText;
-    [SerializeField] TextMeshProUGUI thoughtFutureBG;
+    [SerializeField] ThoughtTextObject thoughtPastText;
+    [SerializeField] ThoughtTextObject thoughtFutureText;
+    [SerializeField] ThoughtTextObject thoughtFutureBG;
 
     void OnTriggerExit(Collider other)
     {
         switch (other.gameObject.tag)
         {
             case "Sweeper IN FRONT":
-                thoughtFutureText.SetText(other.gameObject.GetComponent<Thought>().futureThought);
-                thoughtFutureBG.SetText("<mark=#ffffff82>" + other.gameObject.GetComponent<Thought>().futureThought + "</mark>");
+                thoughtFutureText.textComponent.text = other.gameObject.GetComponent<Thought>().futureThought;
+                thoughtFutureBG.textComponent.text = "<mark=#ffffff82>" + other.gameObject.GetComponent<Thought>().futureThought + "</mark>";
+                thoughtFutureText.FadeTextIn();
+                thoughtFutureBG.FadeTextIn();
+
                 break;
             case "Sweeper ON THE OBJECT":
-                thoughtFutureText.SetText("");
-                thoughtPastText.SetText("");
-                thoughtFutureBG.SetText("");
+                thoughtFutureText.textComponent.text = "";
+                thoughtPastText.textComponent.text = "";
+                thoughtFutureBG.textComponent.text = "";
+                thoughtFutureText.FadeTextOut();
+                thoughtFutureBG.FadeTextOut();
+                thoughtPastText.FadeTextOut();
                 break;
             case "Sweeper BEHIND":
-                thoughtPastText.SetText(other.gameObject.GetComponent<Thought>().pastThought);
+                thoughtPastText.textComponent.text = other.gameObject.GetComponent<Thought>().pastThought;
+                thoughtPastText.FadeTextIn();
                 break;
         }
     }

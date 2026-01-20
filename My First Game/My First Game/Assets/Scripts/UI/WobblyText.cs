@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
-
 public class WobblyText : MonoBehaviour
 {
-        public TMP_Text textComponent;
+    public TMP_Text textComponent;
 
-
+    void Start()
+    {
+        textComponent = GetComponent<TMP_Text>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -36,9 +38,5 @@ public class WobblyText : MonoBehaviour
             textComponent.UpdateGeometry(meshInfo.mesh, i);
         
         }
-
-
-
     }
-
 }
