@@ -7,6 +7,8 @@ TagManager:
   - Sweeper IN FRONT
   - Sweeper ON THE OBJECT
   - Sweeper BEHIND
+  - pastPortal
+  - futurePortal
   layers:
   - Default
   - TransparentFX

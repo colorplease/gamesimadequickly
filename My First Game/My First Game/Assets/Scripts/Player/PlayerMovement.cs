@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     [SerializeField]AudioSource audioSource;
     [Header("Input")]
     PlayerInput playerInput = null;
@@ -85,6 +86,14 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         playerInput = new PlayerInput();
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnEnable()

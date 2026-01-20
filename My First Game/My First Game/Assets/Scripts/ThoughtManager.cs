@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using TMPro;
 
 public class ThoughtManager : MonoBehaviour
@@ -6,10 +7,34 @@ public class ThoughtManager : MonoBehaviour
     //manages "sweeping" of thought hitboxes
     //manages the UI of thoughts
 
+    public static ThoughtManager instance;
+
     [Header("Thought TextMeshProUGUI")]
     [SerializeField] ThoughtTextObject thoughtPastText;
     [SerializeField] ThoughtTextObject thoughtFutureText;
     [SerializeField] ThoughtTextObject thoughtFutureBG;
+    [SerializeField] ThoughtTextObject thoughtPresentFutureText;
+    [SerializeField] ThoughtTextObject thoughtPresentPastText;
+
+    [Header("Read Check")]
+    bool firstReadCheckBypass;
+    [SerializeField] ThoughtTextObject pastThoughtTextObject;
+    Coroutine readCheckCoroutine;
+
+    [Header("Present Past Thoughts")]
+    string presentPastThoughtString;
+    
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void OnTriggerExit(Collider other)
     {
@@ -23,17 +48,53 @@ public class ThoughtManager : MonoBehaviour
 
                 break;
             case "Sweeper ON THE OBJECT":
-                thoughtFutureText.textComponent.text = "";
-                thoughtPastText.textComponent.text = "";
-                thoughtFutureBG.textComponent.text = "";
                 thoughtFutureText.FadeTextOut();
                 thoughtFutureBG.FadeTextOut();
                 thoughtPastText.FadeTextOut();
+                thoughtPresentPastText.FadeTextOut();
                 break;
             case "Sweeper BEHIND":
-                thoughtPastText.textComponent.text = other.gameObject.GetComponent<Thought>().pastThought;
+                thoughtPastText.SetTextTypeWriter(other.gameObject.GetComponent<Thought>().pastThought);
+                presentPastThoughtString = other.gameObject.GetComponent<Thought>().presentPastThought;
                 thoughtPastText.FadeTextIn();
+                readCheckCoroutine = StartCoroutine(ReadCheck());
                 break;
         }
+    }
+
+    IEnumerator ReadCheck()
+    {
+        if(!firstReadCheckBypass)
+        {
+            yield return new WaitForSeconds(0.25f);
+            if(!pastThoughtTextObject.hasBeenRead)
+            {
+                PlayerMovement.instance.moveSpeed = 0;
+            }
+            yield return new WaitForSeconds(3f);
+            thoughtPresentFutureText.textComponent.text = "i can't leave that behind yet.";
+            thoughtPresentFutureText.FadeTextIn();
+            yield return new WaitForSeconds(5f);
+            thoughtPresentFutureText.textComponent.text = "i have to turn around.";
+
+        }
+    }
+
+    public void PresentPastThought()
+    {
+        thoughtPresentPastText.textComponent.text = presentPastThoughtString;
+        thoughtPresentPastText.FadeTextIn();
+    }
+
+    public void RestrictPlayerMovement()
+    {
+        PlayerMovement.instance.moveSpeed = 0;
+    }
+
+    public void RestorePlayerMovement()
+    {
+        StopCoroutine(readCheckCoroutine);
+        PlayerMovement.instance.moveSpeed = 6;
+        thoughtPresentFutureText.FadeTextOut();
     }
 }
