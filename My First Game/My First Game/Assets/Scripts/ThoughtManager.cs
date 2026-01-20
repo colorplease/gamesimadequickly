@@ -17,7 +17,7 @@ public class ThoughtManager : MonoBehaviour
         {
             case "Sweeper IN FRONT":
                 thoughtFutureText.SetText(other.gameObject.GetComponent<Thought>().futureThought);
-                thoughtFutureBG.SetText(other.gameObject.GetComponent<Thought>().futureThought);
+                thoughtFutureBG.SetText("<mark=#ffffff82>" + other.gameObject.GetComponent<Thought>().futureThought + "</mark>");
                 break;
             case "Sweeper ON THE OBJECT":
                 thoughtFutureText.SetText("");
