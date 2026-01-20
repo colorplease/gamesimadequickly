@@ -23,6 +23,9 @@ public class ThoughtManager : MonoBehaviour
 
     [Header("Present Past Thoughts")]
     string presentPastThoughtString;
+
+    [Header("Chapter Barrier")]
+    bool listeningForNextChapter = false;
     
     void Awake()
     {
@@ -58,7 +61,31 @@ public class ThoughtManager : MonoBehaviour
                 presentPastThoughtString = other.gameObject.GetComponent<Thought>().presentPastThought;
                 thoughtPastText.FadeTextIn();
                 readCheckCoroutine = StartCoroutine(ReadCheck());
+                if(other.gameObject.GetComponent<Thought>().chapterBarrier)
+                {
+                    if(AudioManager.instance.readyForNextChapter)
+                    {
+                        AudioManager.instance.BeginNextChapter();
+                        listeningForNextChapter = false;
+                    }
+                    else
+                    {
+                        listeningForNextChapter = true;
+                    }
+                }
                 break;
+        }
+    }
+
+    void Update()
+    {
+        if(listeningForNextChapter)
+        {
+            if(AudioManager.instance.readyForNextChapter)
+            {
+                AudioManager.instance.BeginNextChapter();
+                listeningForNextChapter = false;
+            }
         }
     }
 
@@ -76,7 +103,10 @@ public class ThoughtManager : MonoBehaviour
             thoughtPresentFutureText.FadeTextIn();
             yield return new WaitForSeconds(5f);
             thoughtPresentFutureText.textComponent.text = "i have to turn around.";
-
+        }
+        else
+        {
+            firstReadCheckBypass = false;
         }
     }
 
@@ -94,6 +124,7 @@ public class ThoughtManager : MonoBehaviour
     public void RestorePlayerMovement()
     {
         StopCoroutine(readCheckCoroutine);
+        readCheckCoroutine = null;
         PlayerMovement.instance.moveSpeed = 6;
         thoughtPresentFutureText.FadeTextOut();
     }
