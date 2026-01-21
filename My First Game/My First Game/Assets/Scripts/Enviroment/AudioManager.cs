@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+
+    [Header("Volume Settings")]
+    public float masterVolume = 1f;
 
     [Header("References")]
     public AudioSource musicSource;
@@ -13,6 +17,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] chapterMusic;
     public int currentChapter = 0;
     public bool readyForNextChapter = false;
+
+    [Header("Dynamic Music Dimming")]
+    Tween musicFadeLowPass;
+    Tween musicFadeHighPass;
+    bool isDoneDimming = false;
+    AudioHighPassFilter musicHighPassFilter;
+    AudioLowPassFilter musicLowPassFilter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +35,37 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        musicHighPassFilter = musicSource.GetComponent<AudioHighPassFilter>();
+        musicLowPassFilter = musicSource.GetComponent<AudioLowPassFilter>();
         StartFirstChapter(); 
+        musicSource.volume *= masterVolume;
+        staticNoiseSource.volume *= masterVolume;
+    }
+
+    void Update()
+    {
+        if(Eyechecker.instance.lookingAtPastPortal)
+        {
+            if(musicFadeLowPass == null && musicLowPassFilter.cutoffFrequency != 900f)
+            {
+                musicFadeHighPass.Kill();
+                musicFadeHighPass = null;
+                DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 10f, 1f).SetEase(Ease.InOutSine);
+                musicFadeLowPass = DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 900f, 1f).SetEase(Ease.InOutSine);
+            }
+            
+        }
+        else if(Eyechecker.instance.lookingAtFuturePortal)
+        {
+            if(musicFadeHighPass == null && musicHighPassFilter.cutoffFrequency != 3000f)
+            {
+                musicFadeLowPass.Kill();
+                musicFadeLowPass = null;
+                DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 22000f, 1f).SetEase(Ease.InOutSine);
+                musicFadeHighPass = DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 3000f, 1f).SetEase(Ease.InOutSine);
+            }
+            
+        }
     }
 
     // IEnumerator BeginNextChapter()
