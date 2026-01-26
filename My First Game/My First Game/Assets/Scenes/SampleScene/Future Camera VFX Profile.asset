@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume (1) Profile
+  m_Name: Future Camera VFX Profile
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
   components:
-  - {fileID: 828187903701978811}
---- !u!114 &828187903701978811
+  - {fileID: 4857618248404260173}
+--- !u!114 &4857618248404260173
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,17 +28,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ColorAdjustments
   active: 1
   postExposure:
-    m_OverrideState: 0
-    m_Value: 0.44
+    m_OverrideState: 1
+    m_Value: 25.07
   contrast:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: -47.2
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: 88
+    m_Value: 0
   saturation:
     m_OverrideState: 0
-    m_Value: -57.7
+    m_Value: 0
