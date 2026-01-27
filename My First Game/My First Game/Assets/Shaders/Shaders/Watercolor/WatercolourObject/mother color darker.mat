@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Watercolour 2
+  m_Name: mother color darker
   m_Shader: {fileID: -6465566751694194690, guid: bf7b400184610ef4f9be750fd4fc3f94, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -77,6 +77,7 @@ Material:
     m_Floats:
     - Vector1_2BDF6FD9: 0.93
     - Vector1_2FA10055: 1
+    - Vector1_35B4C0F1: 0.3
     - Vector1_46F1304E: 0.57
     - Vector1_BBEA2355: 1
     - _AlphaClip: 0
@@ -102,8 +103,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_D9F05973: {r: 1, g: 0.9713473, b: 0.7688679, a: 0}
-    - Color_DB04B181: {r: 0.6886792, g: 0.44785583, b: 0.23064259, a: 0}
+    - Color_D9F05973: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
+    - Color_DB04B181: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

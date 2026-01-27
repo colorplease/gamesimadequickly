@@ -46,12 +46,12 @@ public class AudioManager : MonoBehaviour
     {
         if(Eyechecker.instance.lookingAtPastPortal)
         {
-            if(musicFadeLowPass == null && musicLowPassFilter.cutoffFrequency != 900f)
+            if(musicFadeLowPass == null && musicLowPassFilter.cutoffFrequency != 1500f)
             {
                 musicFadeHighPass.Kill();
                 musicFadeHighPass = null;
                 DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 10f, 1f).SetEase(Ease.InOutSine);
-                musicFadeLowPass = DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 900f, 1f).SetEase(Ease.InOutSine);
+                musicFadeLowPass = DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 1500f, 1f).SetEase(Ease.InOutSine);
             }
             
         }

@@ -25,8 +25,8 @@ public class WobblyText : MonoBehaviour
 
             for (int j = 0; j < 4; ++j) {
                 var orig = verts[charInfo.vertexIndex + j];
-                var noise = Mathf.PerlinNoise(Time.time*1f + orig.x*5f, 0) * 20f;
-                var noise2 = Mathf.PerlinNoise(Time.time*1f + orig.y*5f, 0) * 20f;
+                var noise = Mathf.PerlinNoise(Time.time*1f + orig.x*5f, 0) * 10f;
+                var noise2 = Mathf.PerlinNoise(Time.time*1f + orig.y*5f, 0) * 10f;
                 verts[charInfo.vertexIndex + j] = orig + new Vector3(noise, noise2, 0);
         
             }

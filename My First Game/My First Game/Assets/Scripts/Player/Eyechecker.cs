@@ -6,6 +6,8 @@ public class Eyechecker : MonoBehaviour
     public bool lookingAtPastPortal = false;
     public bool lookingAtFuturePortal = false;
 
+    [SerializeField] LayerMask layerMask;
+
     void Awake()
     {
         if(instance == null)
@@ -20,7 +22,7 @@ public class Eyechecker : MonoBehaviour
 
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
             if(hit.collider.gameObject.tag == "pastPortal")
             {

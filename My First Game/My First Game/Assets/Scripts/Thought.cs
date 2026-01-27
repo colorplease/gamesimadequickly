@@ -5,6 +5,8 @@ public class Thought : MonoBehaviour
     public string futureThought;
     public string presentFutureThought;
     public string presentPastThought;
+    [Header("PAST BARRIERS ONLY !!")]
     public string pastThought;
     public bool chapterBarrier;
+    public Material motherColor, motherColorDarker;
 }

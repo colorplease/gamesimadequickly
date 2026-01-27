@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Watercolour 4
+  m_Name: Watercolour 6
   m_Shader: {fileID: -6465566751694194690, guid: bf7b400184610ef4f9be750fd4fc3f94, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -103,8 +103,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_D9F05973: {r: 0.7989498, g: 0.8867924, b: 0.8867924, a: 0}
-    - Color_DB04B181: {r: 0.38203096, g: 0.52198297, b: 0.8018868, a: 0}
+    - Color_D9F05973: {r: 0.8039216, g: 0.54509807, b: 0.4627451, a: 0}
+    - Color_DB04B181: {r: 0.8207547, g: 0.55936277, b: 0.4761926, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

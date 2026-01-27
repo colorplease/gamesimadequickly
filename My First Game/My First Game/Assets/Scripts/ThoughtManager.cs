@@ -26,6 +26,10 @@ public class ThoughtManager : MonoBehaviour
 
     [Header("Chapter Barrier")]
     bool listeningForNextChapter = false;
+
+    [Header("Color Changes")]
+    [SerializeField] MeshRenderer[] lighterMeshes;
+    [SerializeField] MeshRenderer[] darkerMeshes;
     
     void Awake()
     {
@@ -72,6 +76,14 @@ public class ThoughtManager : MonoBehaviour
                     {
                         listeningForNextChapter = true;
                     }
+                }
+                foreach(MeshRenderer mesh in lighterMeshes)
+                {
+                    mesh.material = other.gameObject.GetComponent<Thought>().motherColor;
+                }
+                foreach(MeshRenderer mesh in darkerMeshes)
+                {
+                    mesh.material = other.gameObject.GetComponent<Thought>().motherColorDarker;
                 }
                 break;
         }
