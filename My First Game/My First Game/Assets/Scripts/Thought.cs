@@ -9,4 +9,5 @@ public class Thought : MonoBehaviour
     public string pastThought;
     public bool chapterBarrier;
     public Material motherColor, motherColorDarker;
+    public Color pastTextColor;
 }

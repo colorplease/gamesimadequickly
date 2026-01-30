@@ -59,7 +59,7 @@ public class ThoughtTextObject : MonoBehaviour
     {
         hasBeenRead = false;
         string typeWriterText = "";
-        typeWriterTween = DOTween.To(() => typeWriterText, x => typeWriterText = x, text, 4f).OnUpdate(() => {
+        typeWriterTween = DOTween.To(() => typeWriterText, x => typeWriterText = x, text, text.Length * 0.15f).OnUpdate(() => {
             // print("Setting text: " + text);
             textComponent.text = typeWriterText;
         });

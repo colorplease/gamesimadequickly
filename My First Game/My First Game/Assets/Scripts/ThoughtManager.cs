@@ -65,6 +65,7 @@ public class ThoughtManager : MonoBehaviour
                 presentPastThoughtString = other.gameObject.GetComponent<Thought>().presentPastThought;
                 thoughtPastText.FadeTextIn();
                 readCheckCoroutine = StartCoroutine(ReadCheck());
+                thoughtPastText.textComponent.color = other.gameObject.GetComponent<Thought>().pastTextColor;
                 if(other.gameObject.GetComponent<Thought>().chapterBarrier)
                 {
                     if(AudioManager.instance.readyForNextChapter)
