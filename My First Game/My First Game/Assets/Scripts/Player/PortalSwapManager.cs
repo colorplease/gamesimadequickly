@@ -7,7 +7,7 @@ public class PortalSwapManager : MonoBehaviour
     [SerializeField] Material futureOutlineShaderMaterial;
     [SerializeField] Material chapterOutlineShaderMaterial;
     public Color newOutlineColor;
-    float outlineWidth = 3;
+    float outlineWidth = 2;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class PortalSwapManager : MonoBehaviour
         futureOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor);
         futureOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth);
         chapterOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor + new Color(0.19f, 0.19f, 0.19f, 1));
-        chapterOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth - 0.5f);
+        chapterOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth - 0.3f);
 
     }
 
@@ -36,9 +36,9 @@ public class PortalSwapManager : MonoBehaviour
         // newFuturePortal.localRotation = Quaternion.identity;
         newOutlineColor = new Color(newOutlineColor.r + 0.19f, newOutlineColor.g + 0.19f, newOutlineColor.b + 0.19f, 1);
         futureOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor);
-        outlineWidth -= 0.5f;
+        outlineWidth -= 0.3f;
         futureOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth);
         chapterOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor + new Color(0.19f, 0.19f, 0.19f, 1));
-        chapterOutlineShaderMaterial.SetFloat("Thickness", outlineWidth - 0.5f);
+        chapterOutlineShaderMaterial.SetFloat("Thickness", outlineWidth - 0.3f);
     }
 }

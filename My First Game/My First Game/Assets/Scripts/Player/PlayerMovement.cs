@@ -189,6 +189,11 @@ public class PlayerMovement : MonoBehaviour
         if(inputMagnitude > 0 && isGrounded)
         {
             StartHeadbob();
+            if(!CutsceneManager.instance.isDoneWithBeginningCutscene)
+            {
+                ThoughtManager.instance.StopTutorial();
+                CutsceneManager.instance.isDoneWithBeginningCutscene = true;
+            }
         }
     }
 

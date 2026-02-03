@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
+    public static PlayerLook instance;
     [Header("Input")]
     PlayerInput playerInput = null;
     [SerializeField] float sensX;
@@ -23,6 +24,14 @@ public class PlayerLook : MonoBehaviour
 
     void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         playerInput = new PlayerInput();
     }
 

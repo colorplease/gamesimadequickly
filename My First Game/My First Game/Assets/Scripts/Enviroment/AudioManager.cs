@@ -25,9 +25,9 @@ public class AudioManager : MonoBehaviour
     AudioHighPassFilter musicHighPassFilter;
     AudioLowPassFilter musicLowPassFilter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        if (instance == null)
+        if(instance == null)
         {
             instance = this;
         }
@@ -35,9 +35,12 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    
+    void Start()
+    {
         musicHighPassFilter = musicSource.GetComponent<AudioHighPassFilter>();
         musicLowPassFilter = musicSource.GetComponent<AudioLowPassFilter>();
-        StartFirstChapter(); 
         musicSource.volume *= masterVolume;
         staticNoiseSource.volume *= masterVolume;
     }
@@ -81,7 +84,7 @@ public class AudioManager : MonoBehaviour
         musicSource.PlayOneShot(chapterMusic[0]);
         currentChapter = 0;
         Invoke(nameof(NextChapterFlagSetter), chapterMusic[0].length - 0.05f);
-        print(chapterMusic[0].length);
+        // print(chapterMusic[0].length);
     }
 
     public void NextChapterFlagSetter()
@@ -93,9 +96,9 @@ public class AudioManager : MonoBehaviour
     public void BeginNextChapter()
     {
         currentChapter++;
-        // musicSource.PlayOneShot(chapterMusic[currentChapter]);
-        // Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
-        // readyForNextChapter = false;
-        // staticNoiseSource.Stop();
+        musicSource.PlayOneShot(chapterMusic[currentChapter]);
+        Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
+        readyForNextChapter = false;
+        staticNoiseSource.Stop();
     }
 }

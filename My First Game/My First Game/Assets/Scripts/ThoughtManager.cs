@@ -132,6 +132,17 @@ public class ThoughtManager : MonoBehaviour
         }
     }
 
+    public void StartTutorial()
+    {
+        thoughtPresentFutureText.textComponent.text = "press w to keep moving forward.";
+        thoughtPresentFutureText.FadeTextIn();
+    }
+
+    public void StopTutorial()
+    {
+        thoughtPresentFutureText.FadeTextOut();
+    }
+
     public void PresentPastThought()
     {
         thoughtPresentPastText.textComponent.text = presentPastThoughtString;
@@ -154,7 +165,10 @@ public class ThoughtManager : MonoBehaviour
             }
             readCheckCoroutine = null;
             PlayerMovement.instance.moveSpeed = 6;
-            thoughtPresentFutureText.FadeTextOut();
+            if(CutsceneManager.instance.isDoneWithBeginningCutscene)
+            {
+                thoughtPresentFutureText.FadeTextOut();
+            }
         }
         
     }
