@@ -57,12 +57,12 @@ public class AudioManager : MonoBehaviour
         }
         else if(Eyechecker.instance.lookingAtFuturePortal)
         {
-            if(musicFadeHighPass == null && musicHighPassFilter.cutoffFrequency != 3000f)
+            if(musicFadeHighPass == null && musicHighPassFilter.cutoffFrequency != 2000f)
             {
                 musicFadeLowPass.Kill();
                 musicFadeLowPass = null;
                 DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 22000f, 1f).SetEase(Ease.InOutSine);
-                musicFadeHighPass = DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 3000f, 1f).SetEase(Ease.InOutSine);
+                musicFadeHighPass = DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 2000f, 1f).SetEase(Ease.InOutSine);
             }
             
         }

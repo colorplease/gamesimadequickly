@@ -64,13 +64,15 @@ public class ThoughtManager : MonoBehaviour
                 thoughtPastText.SetTextTypeWriter(other.gameObject.GetComponent<Thought>().pastThought);
                 presentPastThoughtString = other.gameObject.GetComponent<Thought>().presentPastThought;
                 thoughtPastText.FadeTextIn();
-                readCheckCoroutine = StartCoroutine(ReadCheck());
+                if(readCheckCoroutine == null)
+                {
+                    readCheckCoroutine = StartCoroutine(ReadCheck());
+                }
                 thoughtPastText.textComponent.color = other.gameObject.GetComponent<Thought>().pastTextColor;
                 if(other.gameObject.GetComponent<Thought>().chapterBarrier)
                 {
                     if(AudioManager.instance.readyForNextChapter)
                     {
-                        AudioManager.instance.BeginNextChapter();
                         listeningForNextChapter = false;
                     }
                     else
@@ -87,6 +89,10 @@ public class ThoughtManager : MonoBehaviour
                     mesh.material = other.gameObject.GetComponent<Thought>().motherColorDarker;
                 }
                 break;
+            case "chapterPortal":
+                AudioManager.instance.BeginNextChapter();
+                listeningForNextChapter = false;
+            break;
         }
     }
 
@@ -96,8 +102,8 @@ public class ThoughtManager : MonoBehaviour
         {
             if(AudioManager.instance.readyForNextChapter)
             {
-                AudioManager.instance.BeginNextChapter();
                 listeningForNextChapter = false;
+                RestorePlayerMovement();
             }
         }
     }
@@ -109,9 +115,10 @@ public class ThoughtManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             if(!pastThoughtTextObject.hasBeenRead)
             {
-                PlayerMovement.instance.moveSpeed = 0;
+                RestrictPlayerMovement();
             }
             yield return new WaitForSeconds(3f);
+            print("setting text");
             thoughtPresentFutureText.textComponent.text = "i can't leave that behind yet.";
             thoughtPresentFutureText.FadeTextIn();
             yield return new WaitForSeconds(5f);
@@ -136,9 +143,17 @@ public class ThoughtManager : MonoBehaviour
 
     public void RestorePlayerMovement()
     {
-        StopCoroutine(readCheckCoroutine);
-        readCheckCoroutine = null;
-        PlayerMovement.instance.moveSpeed = 6;
-        thoughtPresentFutureText.FadeTextOut();
+        if(!listeningForNextChapter)
+        {
+            if(readCheckCoroutine != null)
+            {
+                StopCoroutine(readCheckCoroutine);
+                readCheckCoroutine = null;
+            }
+            readCheckCoroutine = null;
+            PlayerMovement.instance.moveSpeed = 6;
+            thoughtPresentFutureText.FadeTextOut();
+        }
+        
     }
 }

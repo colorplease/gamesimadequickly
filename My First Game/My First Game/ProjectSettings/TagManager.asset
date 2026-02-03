@@ -9,6 +9,7 @@ TagManager:
   - Sweeper BEHIND
   - pastPortal
   - futurePortal
+  - chapterPortal
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Future
   - Barrier
   - head
-  - 
+  - Chapter
   - 
   - 
   - 

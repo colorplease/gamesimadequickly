@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TheFuture
+  m_Name: TheFutureCH1
   m_Shader: {fileID: 4800000, guid: 5eb1dd0ae77d25c4b981b14edd6b794b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

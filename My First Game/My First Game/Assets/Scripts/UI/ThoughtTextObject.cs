@@ -52,7 +52,10 @@ public class ThoughtTextObject : MonoBehaviour
 
     public void FadeTextOut()
     {
-        textComponent.DOFade(0, 0.25f).SetEase(Ease.InExpo);
+        textComponent.DOFade(0, 0.25f).SetEase(Ease.InExpo).OnComplete(() => {
+            textComponent.SetText("");
+        });
+        
     }
 
     public void SetTextTypeWriter(string text)
