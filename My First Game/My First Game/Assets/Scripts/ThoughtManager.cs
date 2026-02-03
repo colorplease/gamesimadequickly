@@ -92,6 +92,8 @@ public class ThoughtManager : MonoBehaviour
             case "chapterPortal":
                 AudioManager.instance.BeginNextChapter();
                 listeningForNextChapter = false;
+                PortalSwapManager.instance.SwapPortals(other.gameObject.transform);
+                print("chapterPortal");
             break;
         }
     }

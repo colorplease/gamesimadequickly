@@ -28,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
     public bool footstepSoundEnabled = false;
     string currentGround;
     float Sin;
-    [SerializeField] AudioClip[] woodFootsteps;
-    [SerializeField] AudioClip[] grassFootsteps;
     [SerializeField] AudioClip[] tileFootsteps;
     bool isTriggered;
 
@@ -222,18 +220,7 @@ public class PlayerMovement : MonoBehaviour
         {
             var randomPitch = UnityEngine.Random.Range(0.85f, 1.25f);
             AudioClip step = null;
-            switch(currentGround)
-            {
-                case "wood":
-                    step = woodFootsteps[UnityEngine.Random.Range(0, woodFootsteps.Length - 1)];
-                    break;
-                case "grass":
-                    step = grassFootsteps[UnityEngine.Random.Range(0, grassFootsteps.Length - 1)];
-                    break;
-                case "tile":
-                    step = tileFootsteps[UnityEngine.Random.Range(0, grassFootsteps.Length - 1)];
-                    break;
-            }
+            step = tileFootsteps[UnityEngine.Random.Range(0, tileFootsteps.Length - 1)];
             audioSource.pitch = randomPitch;
             audioSource.PlayOneShot(step);
         }

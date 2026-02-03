@@ -81,6 +81,7 @@ public class AudioManager : MonoBehaviour
         musicSource.PlayOneShot(chapterMusic[0]);
         currentChapter = 0;
         Invoke(nameof(NextChapterFlagSetter), chapterMusic[0].length - 0.05f);
+        print(chapterMusic[0].length);
     }
 
     public void NextChapterFlagSetter()
@@ -91,13 +92,10 @@ public class AudioManager : MonoBehaviour
 
     public void BeginNextChapter()
     {
-        if (readyForNextChapter)
-        {
-            currentChapter++;
-            musicSource.PlayOneShot(chapterMusic[currentChapter]);
-            Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
-            readyForNextChapter = false;
-            staticNoiseSource.Stop();
-        }
+        currentChapter++;
+        // musicSource.PlayOneShot(chapterMusic[currentChapter]);
+        // Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
+        // readyForNextChapter = false;
+        // staticNoiseSource.Stop();
     }
 }

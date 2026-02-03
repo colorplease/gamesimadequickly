@@ -10,6 +10,7 @@ TagManager:
   - pastPortal
   - futurePortal
   - chapterPortal
+  - tile
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,8 @@ TagManager:
   - Future
   - Barrier
   - head
+  - The Chapter
   - Chapter
-  - 
   - 
   - 
   - 

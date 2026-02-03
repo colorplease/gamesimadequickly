@@ -4,9 +4,11 @@ public class PortalSwapManager : MonoBehaviour
 {
     public static PortalSwapManager instance;
     [Header("Swapping Portals")]
-    public Material[] chapterMaterials;
-    [SerializeField] PortalTextureSetup portalTextureSetup;
-    
+    [SerializeField] Material futureOutlineShaderMaterial;
+    [SerializeField] Material chapterOutlineShaderMaterial;
+    public Color newOutlineColor;
+    float outlineWidth = 3;
+
     void Awake()
     {
         if(instance == null)
@@ -17,13 +19,26 @@ public class PortalSwapManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        newOutlineColor = Color.black;
+        futureOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor);
+        futureOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth);
+        chapterOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor + new Color(0.19f, 0.19f, 0.19f, 1));
+        chapterOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth - 0.5f);
+
     }
 
-    void OnTriggerEnter(Collider other)
+    public void SwapPortals(Transform newFuturePortal)
     {
-        if(other.gameObject.tag == "chapterPortal")
-        {
-            portalTextureSetup.cameraMatFuture = chapterMaterials[AudioManager.instance.currentChapter];
-        }
+        // Destroy(GameObject.FindGameObjectWithTag("futurePortal"));
+        // newFuturePortal.tag = "futurePortal";
+        // newFuturePortal.parent = futurePortalHolder;
+        // newFuturePortal.localPosition = Vector3.zero;
+        // newFuturePortal.localRotation = Quaternion.identity;
+        newOutlineColor = new Color(newOutlineColor.r + 0.19f, newOutlineColor.g + 0.19f, newOutlineColor.b + 0.19f, 1);
+        futureOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor);
+        outlineWidth -= 0.5f;
+        futureOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth);
+        chapterOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor + new Color(0.19f, 0.19f, 0.19f, 1));
+        chapterOutlineShaderMaterial.SetFloat("Thickness", outlineWidth - 0.5f);
     }
 }

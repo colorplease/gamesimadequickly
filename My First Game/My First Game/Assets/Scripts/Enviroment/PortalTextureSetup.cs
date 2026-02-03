@@ -33,7 +33,7 @@ public class PortalTextureSetup : MonoBehaviour
         cameraMatChapter.mainTexture = cameraChapter.targetTexture;
     }
 
-    void PortalSwapUpdate()
+    public void PortalSwapUpdate()
     {
         if(cameraFuture.targetTexture != null){
             cameraFuture.targetTexture.Release();

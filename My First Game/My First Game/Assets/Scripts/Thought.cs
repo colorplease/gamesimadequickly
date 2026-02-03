@@ -8,6 +8,7 @@ public class Thought : MonoBehaviour
     [Header("PAST BARRIERS ONLY !!")]
     public string pastThought;
     public bool chapterBarrier;
+    public bool isChapterClear;
     public Material motherColor, motherColorDarker;
     public Color pastTextColor;
 }
