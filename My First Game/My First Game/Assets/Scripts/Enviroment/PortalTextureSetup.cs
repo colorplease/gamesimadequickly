@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PortalTextureSetup : MonoBehaviour
 {
+    public static PortalTextureSetup instance;
     public Camera cameraPast;
     public Material cameraMatPast;
 
@@ -10,6 +11,18 @@ public class PortalTextureSetup : MonoBehaviour
 
     public Camera cameraChapter;
     public Material cameraMatChapter;  
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

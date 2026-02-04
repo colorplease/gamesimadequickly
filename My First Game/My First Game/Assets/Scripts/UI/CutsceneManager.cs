@@ -93,7 +93,7 @@ public class CutsceneManager : MonoBehaviour
 
     public void StartFirstChapter()
     {
-        AudioManager.instance.StartFirstChapter();
+        AudioManager.instance.BeginChapter();
         backgroundImage.DOFade(0, 3.5f).SetEase(Ease.InOutSine);
         ThoughtManager.instance.RestorePlayerMovement();
         PlayerLook.instance.inControl = true;

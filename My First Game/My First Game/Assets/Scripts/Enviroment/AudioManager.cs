@@ -60,12 +60,12 @@ public class AudioManager : MonoBehaviour
         }
         else if(Eyechecker.instance.lookingAtFuturePortal)
         {
-            if(musicFadeHighPass == null && musicHighPassFilter.cutoffFrequency != 2000f)
+            if(musicFadeHighPass == null && musicHighPassFilter.cutoffFrequency != 1500f)
             {
                 musicFadeLowPass.Kill();
                 musicFadeLowPass = null;
                 DOTween.To(() => musicLowPassFilter.cutoffFrequency, x => musicLowPassFilter.cutoffFrequency = x, 22000f, 1f).SetEase(Ease.InOutSine);
-                musicFadeHighPass = DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 2000f, 1f).SetEase(Ease.InOutSine);
+                musicFadeHighPass = DOTween.To(() => musicHighPassFilter.cutoffFrequency, x => musicHighPassFilter.cutoffFrequency = x, 1500f, 1f).SetEase(Ease.InOutSine);
             }
             
         }
@@ -79,12 +79,12 @@ public class AudioManager : MonoBehaviour
     //     musicSource.PlayOneShot(chapterMusic[currentChapter]);
     // }
 
-    public void StartFirstChapter()
+    public void BeginChapter()
     {
-        musicSource.PlayOneShot(chapterMusic[0]);
-        currentChapter = 0;
-        Invoke(nameof(NextChapterFlagSetter), chapterMusic[0].length - 0.05f);
-        // print(chapterMusic[0].length);
+        musicSource.PlayOneShot(chapterMusic[currentChapter]);
+        Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
+        readyForNextChapter = false;
+        PortalSwapManager.instance.SetPortalPosition();
     }
 
     public void NextChapterFlagSetter()
@@ -100,5 +100,6 @@ public class AudioManager : MonoBehaviour
         Invoke(nameof(NextChapterFlagSetter), chapterMusic[currentChapter].length - 0.05f);
         readyForNextChapter = false;
         staticNoiseSource.Stop();
+        PortalSwapManager.instance.SetPortalPosition();
     }
 }

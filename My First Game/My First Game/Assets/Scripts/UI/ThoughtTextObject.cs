@@ -71,6 +71,7 @@ public class ThoughtTextObject : MonoBehaviour
             hasBeenRead = true;
             ThoughtManager.instance.PresentPastThought();
             ThoughtManager.instance.RestorePlayerMovement();
+            PortalSwapManager.instance.EnablePortalVisibility();
         });
     }
 }

@@ -102,15 +102,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jumping"",
-                    ""type"": ""Button"",
-                    ""id"": ""6a7985a0-b768-4922-81ac-7216c0f46c5d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Looking"",
                     ""type"": ""Value"",
                     ""id"": ""49ddc17f-cfa2-47b2-8270-a0be73acaf0d"",
@@ -167,17 +158,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5f2828e4-e5f0-44d0-9b05-1db5fad30eb9"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jumping"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0c0a4153-521b-435f-ad2c-3b54071fcd30"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -195,7 +175,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Walking = m_Movement.FindAction("Walking", throwIfNotFound: true);
-        m_Movement_Jumping = m_Movement.FindAction("Jumping", throwIfNotFound: true);
         m_Movement_Looking = m_Movement.FindAction("Looking", throwIfNotFound: true);
     }
 
@@ -278,7 +257,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Walking;
-    private readonly InputAction m_Movement_Jumping;
     private readonly InputAction m_Movement_Looking;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
@@ -295,10 +273,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/Walking".
         /// </summary>
         public InputAction @Walking => m_Wrapper.m_Movement_Walking;
-        /// <summary>
-        /// Provides access to the underlying input action "Movement/Jumping".
-        /// </summary>
-        public InputAction @Jumping => m_Wrapper.m_Movement_Jumping;
         /// <summary>
         /// Provides access to the underlying input action "Movement/Looking".
         /// </summary>
@@ -332,9 +306,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Walking.started += instance.OnWalking;
             @Walking.performed += instance.OnWalking;
             @Walking.canceled += instance.OnWalking;
-            @Jumping.started += instance.OnJumping;
-            @Jumping.performed += instance.OnJumping;
-            @Jumping.canceled += instance.OnJumping;
             @Looking.started += instance.OnLooking;
             @Looking.performed += instance.OnLooking;
             @Looking.canceled += instance.OnLooking;
@@ -352,9 +323,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Walking.started -= instance.OnWalking;
             @Walking.performed -= instance.OnWalking;
             @Walking.canceled -= instance.OnWalking;
-            @Jumping.started -= instance.OnJumping;
-            @Jumping.performed -= instance.OnJumping;
-            @Jumping.canceled -= instance.OnJumping;
             @Looking.started -= instance.OnLooking;
             @Looking.performed -= instance.OnLooking;
             @Looking.canceled -= instance.OnLooking;
@@ -405,13 +373,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnWalking(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Jumping" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJumping(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Looking" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

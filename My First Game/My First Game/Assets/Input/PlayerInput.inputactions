@@ -16,15 +16,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jumping",
-                    "type": "Button",
-                    "id": "6a7985a0-b768-4922-81ac-7216c0f46c5d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Looking",
                     "type": "Value",
                     "id": "49ddc17f-cfa2-47b2-8270-a0be73acaf0d",
@@ -78,17 +69,6 @@
                     "action": "Walking",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "5f2828e4-e5f0-44d0-9b05-1db5fad30eb9",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jumping",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

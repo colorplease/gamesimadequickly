@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Enable();
         playerInput.Movement.Walking.performed += OnWalkingPerformed;
         playerInput.Movement.Walking.canceled += OnWalkingCanceled;
-        playerInput.Movement.Jumping.performed += OnJumpingPerformed;
+        // playerInput.Movement.Jumping.performed += OnJumpingPerformed;
     }
 
     void OnWalkingPerformed(InputAction.CallbackContext context)
@@ -113,13 +113,13 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = Vector3.zero;
     }
 
-    void OnJumpingPerformed(InputAction.CallbackContext context)
-    {
-        if(isGrounded)
-        {
-            Jump();
-        }
-    }
+    // void OnJumpingPerformed(InputAction.CallbackContext context)
+    // {
+    //     if(isGrounded)
+    //     {
+    //         Jump();
+    //     }
+    // }
     private void Update()
     {
         // print((orientation.rotation.y));
@@ -148,10 +148,10 @@ public class PlayerMovement : MonoBehaviour
         verticalMovement = adjustedVerticalMovement;
     }
 
-    void Jump()
-    {
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
+    // void Jump()
+    // {
+    //     rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    // }
 
     void ControlDrag()
     {
