@@ -40,14 +40,15 @@ public class PortalSwapManager : MonoBehaviour
     {
         chapterPortalObject.transform.parent = chapterObjectHolders[AudioManager.instance.currentChapter];
         chapterPortalObject.transform.localPosition = new Vector3(chapterPortalObject.transform.localPosition.x, chapterPortalObject.transform.localPosition.y, chapterPortalLocalPositions[AudioManager.instance.currentChapter]);
-        chapterPortalObject.GetComponent<MeshRenderer>().enabled = false;
+        // chapterPortalObject.GetComponent<MeshRenderer>().enabled = false;
         chapterPortalCamera.targetTexture = chapterPortalRenderTexture;
+        PortalTextureSetup.instance.PortalSwapUpdate();
     }
 
     public void EnablePortalVisibility()
     {
-        PortalTextureSetup.instance.PortalSwapUpdate();
-        chapterPortalObject.GetComponent<MeshRenderer>().enabled = true;
+        // PortalTextureSetup.instance.PortalSwapUpdate();
+        // chapterPortalObject.GetComponent<MeshRenderer>().enabled = true;
     }
 
     public void SwapPortals(Transform newFuturePortal)

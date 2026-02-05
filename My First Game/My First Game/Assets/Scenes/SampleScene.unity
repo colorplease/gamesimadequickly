@@ -9006,7 +9006,7 @@ GameObject:
   m_TagString: chapterPortal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!23 &218247707
 MeshRenderer:
@@ -26107,7 +26107,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &704898906
 Transform:
@@ -49085,7 +49085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8182baee6b0fb874198f73a2f5b3d315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
-  enableBeginningCutscene: 1
+  enableBeginningCutscene: 0
   enableEndingCutscene: 0
   beginningCutsceneHolder: {fileID: 1343724645}
   isDoneWithBeginningCutscene: 0
@@ -52308,7 +52308,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1435005078
 Transform:
