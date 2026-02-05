@@ -14,7 +14,8 @@ public class PortalSwapManager : MonoBehaviour
     [SerializeField] float[] chapterPortalLocalPositions;
     [Header("Portal Upkeep")]
     [SerializeField] RenderTexture chapterPortalRenderTexture;
-    [SerializeField] Camera chapterPortalCamera;
+    public Camera chapterPortalCamera;
+    public UnityEngine.Rendering.Universal.UniversalAdditionalCameraData chapterPortalCameraData;
 
     void Awake()
     {
@@ -31,6 +32,7 @@ public class PortalSwapManager : MonoBehaviour
         futureOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth);
         chapterOutlineShaderMaterial.SetColor("_OutlineColor", newOutlineColor + new Color(0.19f, 0.19f, 0.19f, 1));
         chapterOutlineShaderMaterial.SetFloat("_Thickness", outlineWidth - 0.3f);
+        chapterPortalCameraData = chapterPortalCamera.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
 
     }
 
