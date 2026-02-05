@@ -105,6 +105,9 @@ public class ThoughtManager : MonoBehaviour
                 PortalSwapManager.instance.SwapPortals(other.gameObject.transform);
                 print("chapterPortal");
             break;
+            case "ENDING":
+            CutsceneManager.instance.StartEndingCutscene();
+            break;
         }
     }
 

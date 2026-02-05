@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 44417117}
   - component: {fileID: 44417116}
   - component: {fileID: 44417115}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20682,7 +20682,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c564d098e1953b64a975b8a1f2d69593, type: 3}
   - {fileID: 8300000, guid: 31af75c644078014980d9d7f67a47326, type: 3}
   - {fileID: 8300000, guid: 34f4e13c0da7bf14c9b9462e299a7919, type: 3}
-  currentChapter: 4
+  currentChapter: 0
   readyForNextChapter: 0
 --- !u!165 &562201866
 AudioHighPassFilter:
@@ -20741,6 +20741,7 @@ MonoBehaviour:
   - {fileID: 626946608}
   - {fileID: 1625361280}
   - {fileID: 567115665}
+  - {fileID: 1373479752}
   chapterPortalLocalPositions:
   - 117.53
   - 136.81
@@ -21346,7 +21347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &567115665
 Transform:
   m_ObjectHideFlags: 0
@@ -23015,7 +23016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &626946608
 Transform:
   m_ObjectHideFlags: 0
@@ -45926,7 +45927,7 @@ Transform:
   m_GameObject: {fileID: 1242978325}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.09, y: 0.43000007, z: 257.08}
+  m_LocalPosition: {x: 0.09, y: 0.43000007, z: 243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48961,12 +48962,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343724640}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 922736c0c5fa34e4e82dd00df81d1ca3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -49084,9 +49085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8182baee6b0fb874198f73a2f5b3d315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
-  enableBeginningCutscene: 0
+  enableBeginningCutscene: 1
+  enableEndingCutscene: 0
   beginningCutsceneHolder: {fileID: 1343724645}
   isDoneWithBeginningCutscene: 0
+  cutSceneAudioSource: {fileID: 1343724642}
   godTextPrefab: {fileID: 6140539279412217032, guid: 00c9611c8110e5649a48cc602678e6d7, type: 3}
   meTextPrefab: {fileID: 8386797346881493385, guid: 291391559ab0d2d4686fa7ff33d807e9, type: 3}
   cutsceneTextHolder: {fileID: 2041974967}
@@ -49094,6 +49097,8 @@ MonoBehaviour:
   currentText: {fileID: 0}
   timeBeforeFadeOnComplete: 1.5
   fadingTimeBeforeDisappearance: 1.5
+  isDoneWithEndingCutscene: 0
+  endingCutsceneAudio: {fileID: 8300000, guid: bd1f2e8c9447fc247bf6de971e316d26, type: 3}
 --- !u!95 &1343724645
 Animator:
   serializedVersion: 7
@@ -49937,7 +49942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1366050106
 Transform:
   m_ObjectHideFlags: 0
@@ -50171,7 +50176,7 @@ Transform:
   m_GameObject: {fileID: 1373479751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38, y: 1.75, z: 3.47}
+  m_LocalPosition: {x: 0.38, y: 1.75, z: 643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58792,7 +58797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1625361280
 Transform:
   m_ObjectHideFlags: 0
@@ -72965,7 +72970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -9,8 +9,10 @@ public class CutsceneManager : MonoBehaviour
     public static CutsceneManager instance;
 
     public bool enableBeginningCutscene = true;
+    public bool enableEndingCutscene = true;
     public Animator beginningCutsceneHolder;
     public bool isDoneWithBeginningCutscene = false;
+    public AudioSource cutSceneAudioSource;
     [Header("Beginning Cutscene")]
     public GameObject godTextPrefab;
     public GameObject meTextPrefab;
@@ -20,6 +22,10 @@ public class CutsceneManager : MonoBehaviour
     public TextMeshProUGUI currentText;
     public float timeBeforeFadeOnComplete;
     public float fadingTimeBeforeDisappearance;
+
+    [Header("Ending Cutscene")]
+    public bool isDoneWithEndingCutscene = false;
+    [SerializeField] AudioClip endingCutsceneAudio;
 
     void Awake()
     {
@@ -38,14 +44,36 @@ public class CutsceneManager : MonoBehaviour
         {
             beginningCutsceneHolder.SetTrigger("Start");
             backgroundImage.enabled = true;
+            backgroundImage.color = Color.white;
             ThoughtManager.instance.RestrictPlayerMovement();
             PlayerMovement.instance.footstepSoundEnabled = false;
             PlayerLook.instance.inControl = false;
+            cutSceneAudioSource.Play();
         }
-        else
+        if(enableEndingCutscene)
+        {
+            StartEndingCutscene();
+        }
+        if(!enableEndingCutscene && !enableBeginningCutscene)
         {
             StartFirstChapter();
         }
+    }
+
+    public void StartEndingCutscene()
+    {
+        backgroundImage.enabled = true;
+        backgroundImage.DOFade(1, 3.5f).SetEase(Ease.InOutSine).OnComplete(() => EndingCutscene());
+    }
+
+    void EndingCutscene()
+    {
+        beginningCutsceneHolder.SetTrigger("End");
+        ThoughtManager.instance.RestrictPlayerMovement();
+        PlayerMovement.instance.footstepSoundEnabled = false;
+        PlayerLook.instance.inControl = false;
+        cutSceneAudioSource.clip = endingCutsceneAudio;
+        cutSceneAudioSource.Play();
     }
     
     public void SummonGodText(string text)
@@ -97,6 +125,7 @@ public class CutsceneManager : MonoBehaviour
         backgroundImage.DOFade(0, 3.5f).SetEase(Ease.InOutSine);
         ThoughtManager.instance.RestorePlayerMovement();
         PlayerLook.instance.inControl = true;
+        PlayerMovement.instance.footstepSoundEnabled = true;
         ThoughtManager.instance.StartTutorial();
     }
 
