@@ -42,13 +42,7 @@ public class CutsceneManager : MonoBehaviour
     {
         if(enableBeginningCutscene)
         {
-            beginningCutsceneHolder.SetTrigger("Start");
-            backgroundImage.enabled = true;
-            backgroundImage.color = Color.white;
-            ThoughtManager.instance.RestrictPlayerMovement();
-            PlayerMovement.instance.footstepSoundEnabled = false;
-            PlayerLook.instance.inControl = false;
-            cutSceneAudioSource.Play();
+            StartCoroutine(SyncStartDelay());
         }
         if(enableEndingCutscene)
         {
@@ -58,6 +52,33 @@ public class CutsceneManager : MonoBehaviour
         {
             StartFirstChapter();
         }
+    }
+
+    IEnumerator SyncStartDelay()
+    {
+        backgroundImage.enabled = true;
+        backgroundImage.color = Color.white;
+        ThoughtManager.instance.RestrictPlayerMovement();
+        PlayerMovement.instance.footstepSoundEnabled = false;
+        PlayerLook.instance.inControl = false;
+        yield return new WaitForSeconds(2f);
+        StartBeginningCutscene();
+    }
+
+    public void StartBeginningCutscene()
+    {
+        beginningCutsceneHolder.SetTrigger("Start");
+        
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void PlayCutsceneAudio()
+    {
+        cutSceneAudioSource.Play();
     }
 
     public void StartEndingCutscene()
@@ -73,7 +94,6 @@ public class CutsceneManager : MonoBehaviour
         PlayerMovement.instance.footstepSoundEnabled = false;
         PlayerLook.instance.inControl = false;
         cutSceneAudioSource.clip = endingCutsceneAudio;
-        cutSceneAudioSource.Play();
     }
     
     public void SummonGodText(string text)

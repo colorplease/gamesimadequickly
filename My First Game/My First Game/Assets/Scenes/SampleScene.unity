@@ -49062,15 +49062,13 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: f72d681a099ff2c4ba3f1eac3de6539e, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 0
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 942393203243247794, guid: f72d681a099ff2c4ba3f1eac3de6539e, type: 2}
     value: {fileID: 1343724645}
-  - key: {fileID: 1379068135611255032, guid: f72d681a099ff2c4ba3f1eac3de6539e, type: 2}
-    value: {fileID: 1343724642}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1343724644
@@ -49085,7 +49083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8182baee6b0fb874198f73a2f5b3d315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
-  enableBeginningCutscene: 0
+  enableBeginningCutscene: 1
   enableEndingCutscene: 0
   beginningCutsceneHolder: {fileID: 1343724645}
   isDoneWithBeginningCutscene: 0
@@ -49111,7 +49109,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b9c04cfc03d6ebc43b3708876b333523, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -83202,8 +83200,8 @@ SceneRoots:
   - {fileID: 764429533}
   - {fileID: 562201863}
   - {fileID: 67018292}
+  - {fileID: 880961420}
   - {fileID: 262050920}
   - {fileID: 1378519704}
-  - {fileID: 880961420}
   - {fileID: 1406519155}
   - {fileID: 167356704}
